@@ -1,0 +1,38 @@
+#ifndef MAINWINDOW_H
+#define MAINWINDOW_H
+
+#include <QMainWindow>
+#include <QMediaPlayer>
+
+QT_BEGIN_NAMESPACE
+namespace Ui { class MainWindow; }
+QT_END_NAMESPACE
+
+class MainWindow : public QMainWindow
+{
+    Q_OBJECT
+
+public:
+    MainWindow(QWidget *parent = nullptr);
+    ~MainWindow();
+
+private slots:
+    void on_startButton_clicked(); // Объявление нового слота
+    void on_nextButton_clicked();  // Объявление нового слота
+    void on_pauseButton_clicked();
+    void on_durationChanged(qint64 duration); // Объявление нового слота
+    void on_positionChanged(qint64 position); // Объявление нового слота
+    void on_horizontalSlider_sliderMoved(int position); // Объявление нового слота
+    void on_mediaChanged(const QMediaContent &media); // Объявление нового слота
+    void on_prevButton_clicked();
+
+
+private:
+    Ui::MainWindow *ui;
+    QMediaPlayer *player;
+    QStringList playlist; // Для хранения списка путей к песням
+    int currentTrackIndex; // Индекс текущей песни в плейлисте
+};
+
+
+#endif // MAINWINDOW_H
